@@ -1,0 +1,17 @@
+resources:
+  jobs:
+    ddavis_encounters:
+      name: ddavis_encounters
+      email_notifications:
+        on_failure:
+          - dan.davis@databricks.com
+        no_alert_for_skipped_runs: true
+      schedule:
+        quartz_cron_expression: 14 0 0 ? * Mon
+        timezone_id: America/Phoenix
+        pause_status: UNPAUSED
+      tasks:
+        - task_key: ddavis_encounters_dlt
+          pipeline_task:
+            pipeline_id: ${resources.pipelines.synthea_etl_pipeline.id}
+            full_refresh: false

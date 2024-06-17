@@ -1,0 +1,17 @@
+resources:
+  pipelines:
+    pipeline_ddavis_encounters:
+      name: ddavis_encounters
+      libraries:
+        - notebook:
+            path: ../src/01_bronze_tables
+        - notebook:
+            path: ../src/02_silver_tables
+        - notebook:
+            path: ../src/03_gold_tables
+      target: ddavis_encounters
+      development: true
+      photon: true
+      catalog: ddavis_demo
+      serverless: true
+      data_sampling: false
