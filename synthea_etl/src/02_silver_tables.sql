@@ -76,3 +76,34 @@ SELECT
   file_metadata
 FROM
   stream(live.bronze_patients)
+
+-- COMMAND ----------
+
+CREATE STREAMING LIVE TABLE silver_encounters (
+  CONSTRAINT `Patient is not null` EXPECT (patient IS NOT NULL)
+)
+AS
+SELECT
+  id
+  START AS start,
+  STOP AS stop,
+  PATIENT AS patient,
+  ORGANIZATION as organization,
+  PROVIDER as provider,
+  PAYER as payer,
+  ENCOUNTERCLASS as encounter_class,
+  CODE as code,
+  DESCRIPTION as description,
+  BASE_ENCOUNTER_COST as base_encounter_cost,
+  TOTAL_CLAIM_COST as total_claim_cost,
+  PAYER_COVERAGE as payer_coverage,
+  REASONCODE as reason_code,
+  REASONDESCRIPTION as reason_description,
+  bronze_date,
+  bronze_time,
+  bronze_timestamp,
+  input_file_name,
+  input_file_path,
+  file_metadata
+FROM
+  stream(live.bronze_allergies)
