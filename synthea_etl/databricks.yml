@@ -24,7 +24,7 @@ variables:
     default: 2
   catalog_suffix:
     description: The target environment to add to the catalog name
-    default: dev
+    default: _dev
 
 targets:
   # The 'dev' target, for development purposes. This target is the default.
@@ -37,7 +37,7 @@ targets:
     variables:
       development_mode: true
       cluster_workers: 2
-      catalog_suffix: dev  
+      catalog_suffix: _dev  
     default: true
     workspace:
       host: https://e2-demo-field-eng.cloud.databricks.com
