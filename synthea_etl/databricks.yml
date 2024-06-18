@@ -25,6 +25,9 @@ variables:
   catalog_suffix:
     description: The target environment to add to the catalog name
     default: _dev
+  debug:
+    description: Display dataframes and other output items during job runs
+    default: false
 
 targets:
   # The 'dev' target, for development purposes. This target is the default.
@@ -37,7 +40,8 @@ targets:
     variables:
       development_mode: true
       cluster_workers: 2
-      catalog_suffix: _dev  
+      catalog_suffix: _dev
+      debug: 'true'
     default: true
     workspace:
       host: https://e2-demo-field-eng.cloud.databricks.com
@@ -61,6 +65,7 @@ targets:
       development_mode: false
       cluster_workers: 4
       catalog_suffix: ''
+      debug: 'false'
     workspace:
       host: https://e2-demo-field-eng.cloud.databricks.com
       # We always use /Users/dan.davis@databricks.com for all resources to make sure we only have a single copy.

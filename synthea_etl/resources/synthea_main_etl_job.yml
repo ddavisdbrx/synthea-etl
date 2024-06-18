@@ -18,3 +18,5 @@ resources:
       parameters:
         - name: environment
           default: ${var.catalog_suffix}
+        - name: debug
+          default: ${var.debug}
