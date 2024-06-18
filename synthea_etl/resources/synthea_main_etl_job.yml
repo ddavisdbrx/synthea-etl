@@ -15,3 +15,6 @@ resources:
           pipeline_task:
             pipeline_id: ${resources.pipelines.pipeline_ddavis_encounters.id}
             full_refresh: false
+      parameters:
+        - name: environment
+          default: ${var.catalog_suffix}
