@@ -15,6 +15,12 @@ resources:
           pipeline_task:
             pipeline_id: ${resources.pipelines.pipeline_ddavis_encounters.id}
             full_refresh: false
+        - task_key: notebook_gold_tables
+          depends_on:
+            - task_key: ddavis_encounters_dlt
+          notebook_task:
+            notebook_path: /Repos/dan.davis@databricks.com/synthea-etl/synthea_etl/src/03_notebook_gold_table
+            source: WORKSPACE
       parameters:
         - name: environment
           default: ${var.catalog_suffix}
