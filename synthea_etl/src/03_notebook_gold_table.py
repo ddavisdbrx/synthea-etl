@@ -4,9 +4,7 @@ dbutils.widgets.text("environment", "dev")
 dbutils.widgets.text("debug", "true")
 
 # assign widget values to variaables
-if dbutils.widgets.get("environment") == 'dev':
-  environment = '_dev'
-else: environment = ''
+environment = dbutils.widgets.get('environment')
 debug = eval(dbutils.widgets.get('debug').title())
 print(f"Target environment: {dbutils.widgets.get('environment')}")
 print(f"Debug run: {debug}")
