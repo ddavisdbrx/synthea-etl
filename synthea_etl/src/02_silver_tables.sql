@@ -106,4 +106,4 @@ SELECT
   input_file_path,
   file_metadata
 FROM
-  stream(live.bronze_allergies)
+  stream(live.bronze_encounters)
