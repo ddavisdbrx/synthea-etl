@@ -84,9 +84,9 @@ CREATE STREAMING LIVE TABLE silver_encounters (
 )
 AS
 SELECT
-  id
-  START AS start,
-  STOP AS stop,
+  id,
+  START AS start_datetime,
+  STOP AS stop_datetime,
   PATIENT AS patient,
   ORGANIZATION as organization,
   PROVIDER as provider,
