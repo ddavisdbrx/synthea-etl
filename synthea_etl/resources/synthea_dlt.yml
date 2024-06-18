@@ -1,0 +1,22 @@
+resources:
+  pipelines:
+    pipeline_ddavis_encounters:
+      name: ddavis_encounters
+      clusters:
+        - label: default
+          autoscale:
+            min_workers: 1
+            max_workers: ${var.cluster_workers}
+            mode: ENHANCED
+      libraries:
+        - notebook:
+            path: ../src/01_bronze_tables.sql
+        - notebook:
+            path: ../src/02_silver_tables.sql
+        - notebook:
+            path: ../src/03_gold_tables.sql
+      target: ddavis_encounters
+      development: ${var.development_mode}
+      photon: true
+      catalog: ddavis_demo${var.catalog_suffix}
+      data_sampling: false

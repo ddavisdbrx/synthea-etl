@@ -6,6 +6,26 @@ bundle:
 include:
   - resources/*.yml
 
+# define who to run the bundle as
+run_as:
+  service_principal_name: "da3cb62c-b62b-467f-abfd-e14f3d3c6fd7"
+
+# workaround for run_as with DLT
+experimental:
+  use_legacy_run_as: true
+
+# Define variables across environments
+variables:
+  development_mode:
+    description: The development mode for DLT
+    default: true
+  cluster_workers:
+    description: The numer of workers the cluster should use
+    default: 2
+  catalog_suffix:
+    description: The target environment to add to the catalog name
+    default: dev
+
 targets:
   # The 'dev' target, for development purposes. This target is the default.
   dev:
@@ -14,9 +34,16 @@ targets:
     # - Any job schedules and triggers are paused by default
     # - The 'development' mode is used for Delta Live Tables pipelines
     mode: development
+    variables:
+      development_mode: true
+      cluster_workers: 2
+      catalog_suffix: dev  
     default: true
     workspace:
       host: https://e2-demo-field-eng.cloud.databricks.com
+    run_as:
+      user_name: dan.davis@databricks.com
+
 
   ## Optionally, there could be a 'staging' target here.
   ## (See Databricks docs on CI/CD at https://docs.databricks.com/dev-tools/bundles/ci-cd.html.)
@@ -30,12 +57,17 @@ targets:
     # We use 'mode: production' to indicate this is a production deployment.
     # Doing so enables strict verification of the settings below.
     mode: production
+    variables:
+      development_mode: false
+      cluster_workers: 4
+      catalog_suffix: ''
     workspace:
       host: https://e2-demo-field-eng.cloud.databricks.com
       # We always use /Users/dan.davis@databricks.com for all resources to make sure we only have a single copy.
       # If this path results in an error, please make sure you have a recent version of the CLI installed.
-      root_path: /Users/dan.davis@databricks.com/.bundle/${bundle.name}/${bundle.target}
-    run_as:
+      root_path: /Users/dan.davis@databricks.com/prod/${bundle.name}/${bundle.target}
       # This runs as dan.davis@databricks.com in production. We could also use a service principal here,
       # see https://docs.databricks.com/dev-tools/bundles/permissions.html.
-      user_name: dan.davis@databricks.com
+      #user_name: dan.davis@databricks.com
+      run_as:
+        service_principal_name: "da3cb62c-b62b-467f-abfd-e14f3d3c6fd7"
