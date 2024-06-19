@@ -70,7 +70,7 @@ targets:
       host: https://e2-demo-field-eng.cloud.databricks.com
       # We always use /Users/dan.davis@databricks.com for all resources to make sure we only have a single copy.
       # If this path results in an error, please make sure you have a recent version of the CLI installed.
-      root_path: /Users/dan.davis@databricks.com/prod/${bundle.name}/${bundle.target}
+      root_path: /Users/dan.davis@databricks.com/.bundle/${bundle.name}/prod/${bundle.target}
       # This runs as dan.davis@databricks.com in production. We could also use a service principal here,
       # see https://docs.databricks.com/dev-tools/bundles/permissions.html.
       #user_name: dan.davis@databricks.com

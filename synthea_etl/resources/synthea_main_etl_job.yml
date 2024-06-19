@@ -19,7 +19,7 @@ resources:
           depends_on:
             - task_key: ddavis_encounters_dlt
           notebook_task:
-            notebook_path: /Repos/dan.davis@databricks.com/synthea-etl/synthea_etl/src/03_notebook_gold_table
+            notebook_path: /Users/dan.davis@databricks.com/.bundle/${bundle.name}/prod/${bundle.target}/03_notebook_gold_table
             source: WORKSPACE
       parameters:
         - name: environment
