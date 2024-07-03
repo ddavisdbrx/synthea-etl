@@ -1,0 +1,10 @@
+resources:
+  jobs:
+    ddavis_bind_demo_workflow:
+      name: ddavis_bind_demo_workflow
+      tasks:
+        - task_key: bind
+          pipeline_task:
+            pipeline_id: 024c766c-c820-4e96-a7e6-910ff9a9f922
+      queue:
+        enabled: true

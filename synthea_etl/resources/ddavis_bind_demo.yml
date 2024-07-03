@@ -1,0 +1,16 @@
+resources:
+  pipelines:
+    pipeline_ddavis_bind_demo:
+      name: ddavis_bind_demo
+      clusters:
+        - label: default
+          autoscale:
+            min_workers: 1
+            max_workers: 5
+            mode: ENHANCED
+      libraries:
+        - notebook:
+            path: /Users/dan.davis@databricks.com/adc/bind_demo/(Clone) dlt/01_bronze_tables
+      development: true
+      catalog: ddavis_demo_dev
+      data_sampling: false
